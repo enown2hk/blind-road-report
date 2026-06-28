@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>盲人女孩盲道被撞事件舆情分析报告</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./vendor/echarts.min.js"></script>
+    <script src="./vendor/lucide.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top">
+        <span class="brand-mark"></span>
+        盲道事件舆情观察
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#timeline">脉络</a>
+        <a href="#spread">传播</a>
+        <a href="#media">媒体</a>
+        <a href="#comment">评论</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero band">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">舆情分析 · 2026.05.08 0:00 - 2026.05.31 0:00</p>
+            <h1>流量之下<br />真相之上</h1>
+            <p class="subtitle">关于“盲人女孩盲道被撞”事件的网络舆情分析</p>
+            <p class="lead">
+              一段“盲人女孩走盲道被撞”的视频先激发同情与愤怒，随后被警方通报为虚假摆拍。
+              舆论焦点也由残障权益和交通安全，转向流量造假、平台监管与社会信任。
+            </p>
+            <div class="hero-actions">
+              <a class="primary-action" href="#spread"><i data-lucide="activity"></i>看传播走势</a>
+              <a class="secondary-action" href="#timeline"><i data-lucide="map"></i>看事件脉络</a>
+            </div>
+          </div>
+          <aside class="hero-card" aria-label="事件画面与核心数字">
+            <img src="./assets/event-scene.jpeg" alt="盲道事件视频画面" />
+            <div class="hero-metric">
+              <span>全网声量</span>
+              <strong>115,305</strong>
+              <small>5月16日单日峰值 76,277 条</small>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="band kpi-band">
+        <div class="wrap kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section id="timeline" class="band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">事件脉络</p>
+          <h2>从同情共鸣到真相反转，权威通报成为舆论转折点</h2>
+        </div>
+        <div class="wrap timeline" id="timelineList"></div>
+      </section>
+
+      <section id="spread" class="band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">传播动态</p>
+            <h2>5月16日形成全网峰值，微博贡献超过七成峰值声量</h2>
+          </div>
+          <div class="source-note">数据整理自 Word 报告《流量之下，真相之上》</div>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>全网发展趋势</h3>
+                <p>依据报告峰值与阶段描述重构关键节点曲线。</p>
+              </div>
+              <button class="icon-button" id="downloadTrend" type="button" title="保存趋势图">
+                <i data-lucide="download"></i>
+              </button>
+            </div>
+            <div class="chart tall-chart" id="trendChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>平台分布</h3>
+                <p>微博是主阵地，短视频与网媒形成二次扩散。</p>
+              </div>
+            </div>
+            <div class="chart tall-chart" id="platformChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band tone-band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">调性结构</p>
+            <h2>中性信息最多，但负面舆情占比接近四成半</h2>
+          </div>
+          <div class="segmented" id="sentimentTabs" role="tablist"></div>
+        </div>
+        <div class="wrap dashboard-grid three">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>倾向性分布</h3>
+                <p id="sentimentCaption">总体舆情倾向。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="sentimentChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>地域关注</h3>
+                <p>广东、北京、山东、江苏、河南位居前列。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="regionChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>高频关键词</h3>
+                <p>“盲道”“摆拍”构成讨论核心。</p>
+              </div>
+            </div>
+            <div class="keyword-cloud" id="keywordCloud"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="media" class="band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">媒体分析</p>
+          <h2>494家媒体参与报道，省级媒体发文数量最高</h2>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>媒体层级</h3>
+                <p>中央、省级、地方媒体共同跟进。</p>
+              </div>
+            </div>
+            <div class="media-summary" id="mediaSummary"></div>
+            <div class="chart small-chart" id="mediaLevelChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>活跃媒体排行</h3>
+                <p>按文章数量展示重点媒体。</p>
+              </div>
+            </div>
+            <div class="segmented compact-tabs" id="mediaTabs" role="tablist"></div>
+            <div class="chart tall-chart" id="mediaRankChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">微博传播</p>
+          <h2>转发链条深达30层，四层以上扩散占比58.09%</h2>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>传播层级</h3>
+                <p>事件经由深层转发继续扩散。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="layerChart"></div>
+            <div class="propagation-stats" id="propagationStats"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>核心传播人</h3>
+                <p>意见领袖推动议题进入更大范围讨论。</p>
+              </div>
+            </div>
+            <div class="hot-list" id="influencerList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="comment" class="band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">评论分析</p>
+            <h2>评论高峰集中在警方通报后，网民情绪从愤怒转向反思</h2>
+          </div>
+          <div class="segmented" id="commentTabs" role="tablist"></div>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>情绪分布</h3>
+                <p>无明显情绪的客观表达占比最高。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="emotionChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>大V评论样本</h3>
+                <p id="commentCaption">正面评论样本。</p>
+              </div>
+            </div>
+            <div class="opinion-list" id="commentList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band conclusion-band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">总结与建议</p>
+          <h2>这不是单一视频翻车，而是网络信任机制的一次压力测试</h2>
+        </div>
+        <div class="wrap conclusion-grid">
+          <article>
+            <span>01</span>
+            <h3>平台治理</h3>
+            <p>建立更有效的内容真实性审核、举报和处罚机制，降低虚假摆拍获得流量收益的空间。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>创作者伦理</h3>
+            <p>流量不能凌驾于社会责任之上，尤其不能消费残障群体、公众善意和公共议题。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>网民素养</h3>
+            <p>面对强情绪内容，需要保持核验意识，避免未证实信息在转发中持续放大。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p>舆情数据新闻作品｜基于公开社交媒体监测数据整理与可视化</p>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
